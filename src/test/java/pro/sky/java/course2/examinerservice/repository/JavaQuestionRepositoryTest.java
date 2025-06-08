@@ -51,7 +51,7 @@ public class JavaQuestionRepositoryTest {
     }
 
     @Test
-    public void getAll() {
+    public void testGetAll() {
         Collection<Question> questions = javaQuestionRepositoryTest.getAll();
         assertNotNull(questions);
         assertEquals(3, questions.size());
