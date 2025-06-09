@@ -76,13 +76,11 @@ public class ExaminerServiceImplTest {
     public void testGetQuestionsByTypeMoreThanPerhaps() {
         String type = "java";
         int amount = 15;
-        try {
-            Collection<Question> questions = examinerServiceTest.getQuestionsByType(type, amount);
-            fail("Ожидается выброс исключения типа ResponseStatusException");
-        } catch (ResponseStatusException e) {
-            HttpStatusCode statusCode = e.getStatusCode();
-            assertEquals(HttpStatus.BAD_REQUEST, statusCode);
-        }
+        ResponseStatusException exception = assertThrows(ResponseStatusException.class, () -> {
+            examinerServiceTest.getQuestionsByType(type, amount);
+        });
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getStatusCode());
+
     }
 
     @Test
